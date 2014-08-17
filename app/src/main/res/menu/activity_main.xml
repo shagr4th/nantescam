@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+    <item android:id="@+id/menu_displayfav"
+        android:title="@string/menu_displayfav"/>
+    <item android:id="@+id/menu_hidefav"
+        android:title="@string/menu_hidefav"/>
+    </group>
+    <item android:id="@+id/menu_about"
+        android:title="@string/menu_about"
+        android:showAsAction="never" />
+    
+</menu>

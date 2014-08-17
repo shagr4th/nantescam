@@ -1,0 +1,17 @@
+<resources>
+
+    <string name="app_name">Nantes Traffic Webcams</string>
+    <string name="menu_displayfav">Display favorites</string>
+    <string name="menu_hidefav">Display all</string>
+    <string name="menu_refresh">Refresh</string>
+	<string name="wait">Please Wait</string>
+    <string name="add_favorite">Add to favorites</string>
+    <string name="del_favorite">Remove from favorites</string>
+    <string name="added_favorite">Added to favorites: </string>
+    <string name="deleted_favorite">Removed from favorites: </string>
+    <string name="nantes">Nantes</string>
+    <string name="menu_about">About</string>
+    <string name="app_descrip">Display webcams managed by infotrafic.nantesmetropole.fr. Tip : favorites are managed by long touches</string>
+    <string name="warning">Error while retrieving image</string>
+    
+</resources>

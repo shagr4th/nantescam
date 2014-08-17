@@ -1,0 +1,16 @@
+<resources>
+
+    <string name="app_name">Nantes Webcams Trafic</string>
+    <string name="menu_displayfav">Afficher favoris</string>
+    <string name="menu_hidefav">Tout afficher</string>
+    <string name="menu_refresh">Rafraîchir</string>
+	<string name="wait">Patientez SVP</string>
+    <string name="add_favorite">Ajouter aux favoris</string>
+    <string name="del_favorite">Supprimer des favoris</string>
+    <string name="added_favorite">Favori ajouté: </string>
+    <string name="deleted_favorite">Favori supprimé: </string>
+   <string name="nantes">Nantes</string>
+   <string name="menu_about">A propos</string>
+   <string name="app_descrip">Affiche les webcams gérés par le site infotrafic.nantesmetropole.fr. Tip: faîtes un touch long sur la map pour gérer les favoris</string>
+    <string name="warning">Une erreur est survenue</string>
+</resources>
