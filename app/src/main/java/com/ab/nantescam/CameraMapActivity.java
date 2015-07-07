@@ -10,6 +10,8 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,8 +31,45 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class CameraMapActivity extends FragmentActivity implements
 		CameraListFragment.Callbacks, OnMarkerClickListener,
-		OnMapLongClickListener, OnCameraChangeListener {
+		OnMapLongClickListener, OnCameraChangeListener,
+		LoaderManager.LoaderCallbacks<List<WebCam>> {
 
+	@Override
+	public Loader<List<WebCam>> onCreateLoader(int id, Bundle bundle) {
+		return new CamLoader(getApplicationContext());
+	}
+	@Override
+	public void onLoadFinished(Loader<List<WebCam>> loader, List<WebCam> result) {
+		getLoaderManager().destroyLoader(0);
+		this.result = result;
+
+		map = ((MapFragment) getFragmentManager().findFragmentById(
+				R.id.camera_map)).getMap();
+		if (map != null) {
+			map.setTrafficEnabled(true);
+			map.setOnMapLongClickListener(this);
+			map.setOnMarkerClickListener(this);
+			map.setOnCameraChangeListener(this);
+
+			boolean startWithFavs = getPrefs().getBoolean(
+					Cams.KEY_PREF_STARTFAVS, false);
+			List<WebCam> values = Cams
+					.getNames(startWithFavs ? getFavoritesPrefs() : null, this.result);
+			addMarkers(values);
+
+			float zoom = getPrefs().getFloat(Cams.KEY_MAP_ZOOM, 13);
+			float lat = getPrefs().getFloat(Cams.KEY_MAP_LAT, 47.21462f);
+			float lng = getPrefs().getFloat(Cams.KEY_MAP_LONG, -1.55710f);
+
+			map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat,
+					lng), zoom));
+		}
+	}
+	@Override
+	public void onLoaderReset(Loader<List<WebCam>> loader) {
+	}
+
+	private List<WebCam> result;
 	private GoogleMap map;
 	private HashMap<Marker, WebCam> markers = new HashMap<Marker, WebCam>();
 
@@ -53,27 +92,9 @@ public class CameraMapActivity extends FragmentActivity implements
 			mTwoPane = true;
 		}
 
-		map = ((MapFragment) getFragmentManager().findFragmentById(
-				R.id.camera_map)).getMap();
-		if (map != null) {
-			map.setTrafficEnabled(true);
-			map.setOnMapLongClickListener(this);
-			map.setOnMarkerClickListener(this);
-			map.setOnCameraChangeListener(this);
+		getSupportLoaderManager().initLoader(0, null, this);
 
-			boolean startWithFavs = getPrefs().getBoolean(
-					Cams.KEY_PREF_STARTFAVS, false);
-			List<WebCam> values = Cams
-					.getNames(startWithFavs ? getFavoritesPrefs() : null);
-			addMarkers(values);
 
-			float zoom = getPrefs().getFloat(Cams.KEY_MAP_ZOOM, 13);
-			float lat = getPrefs().getFloat(Cams.KEY_MAP_LAT, 47.21462f);
-			float lng = getPrefs().getFloat(Cams.KEY_MAP_LONG, -1.55710f);
-
-			map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat,
-					lng), zoom));
-		}
 	}
 
 	private void addMarkers(List<WebCam> values) {
@@ -127,14 +148,14 @@ public class CameraMapActivity extends FragmentActivity implements
 
 		if (item.getItemId() == R.id.menu_displayfav) {
 			item.setChecked(true);
-			List<WebCam> values = Cams.getNames(getFavoritesPrefs());
+			List<WebCam> values = Cams.getNames(getFavoritesPrefs(), result);
 			addMarkers(values);
 			Editor edt = getPrefs().edit();
 			edt.putBoolean(Cams.KEY_PREF_STARTFAVS, true);
 			edt.commit();
 		} else if (item.getItemId() == R.id.menu_hidefav) {
 			item.setChecked(true);
-			List<WebCam> values = Cams.getNames(null);
+			List<WebCam> values = Cams.getNames(null, result);
 			addMarkers(values);
 			Editor edt = getPrefs().edit();
 			edt.putBoolean(Cams.KEY_PREF_STARTFAVS, false);
@@ -174,7 +195,7 @@ public class CameraMapActivity extends FragmentActivity implements
 			// adding or replacing the detail fragment using a
 			// fragment transaction.
 			Bundle arguments = new Bundle();
-			arguments.putString(CameraDetailFragment.ARG_ITEM_ID, id);
+			arguments.putParcelable(CameraDetailFragment.ARG_ITEM_ID, Cams.getWebCam(Integer.parseInt(id), result));
 			CameraDetailFragment fragment = new CameraDetailFragment();
 			fragment.setArguments(arguments);
 			getSupportFragmentManager().beginTransaction()
@@ -184,7 +205,7 @@ public class CameraMapActivity extends FragmentActivity implements
 			// In single-pane mode, simply start the detail activity
 			// for the selected item ID.
 			Intent detailIntent = new Intent(this, CameraDetailActivity.class);
-			detailIntent.putExtra(CameraDetailFragment.ARG_ITEM_ID, id);
+			detailIntent.putExtra(CameraDetailFragment.ARG_ITEM_ID, Cams.getWebCam(Integer.parseInt(id), result));
 			startActivity(detailIntent);
 		}
 	}
@@ -253,4 +274,7 @@ public class CameraMapActivity extends FragmentActivity implements
 		edt.commit();
 	}
 
+	public List<WebCam> getCams() {
+		return result;
+	}
 }

@@ -1,0 +1,571 @@
+{ "webcams": [
+  {
+    "id":701,
+    "name":"Pont du Cens",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt701/snap_c1.jpg",
+    "latitude":47.24741,
+    "longitude":-1.57745
+  },
+  {
+    "id":702,
+    "name":"Ront point de Rennes",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt702/snap_c1.jpg",
+    "latitude":47.23337,
+    "longitude":-1.56582
+  },
+  {
+    "id":703,
+    "name":"Michelet",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt703/snap_c1.jpg",
+    "latitude":47.23301,
+    "longitude":-1.55656
+  },
+  {
+    "id":704,
+    "name":"Pont Morand",
+    "obsolete": "true",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt704.jpg",
+    "latitude":47.22119,
+    "longitude":-1.5556
+  },
+  {
+    "id":705,
+    "name":"Tortière",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt705/snap_c1.jpg",
+    "latitude":47.23533,
+    "longitude":-1.5487
+  },
+  {
+    "id":706,
+    "name":"Hôtel Dieu",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt706/snap_c1.jpg",
+    "latitude":47.21255,
+    "longitude":-1.55412
+  },
+  {
+    "id":707,
+    "name":"Liberté-Chevreul",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt707/snap_c1.jpg",
+    "latitude":47.19827,
+    "longitude":-1.5885
+  },
+  {
+    "id":708,
+    "name":"Beauséjour",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt708/snap_c1.jpg",
+    "latitude":47.23762,
+    "longitude":-1.58620
+  },
+  {
+    "id":709,
+    "name":"Prairie au Duc",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt709.jpg",
+    "latitude":47.20455,
+    "longitude":-1.56245
+  },
+  {
+    "id":710,
+    "name":"Pirmil 1",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt710.jpg",
+    "latitude":47.19773,
+    "longitude":-1.5422
+  },
+  {
+    "id":711,
+    "name":"Pont Aristide Briand",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt711.jpg",
+    "latitude":47.21082,
+    "longitude":-1.5427
+  },
+  {
+    "id":712,
+    "name":"Martyrs Nantais",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt712.jpg",
+    "latitude":47.20586,
+    "longitude":-1.54742
+  },
+  {
+    "id":713,
+    "name":"Anne de Bretagne",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt713/snap_c1.jpg",
+    "latitude":47.20922,
+    "longitude":-1.5667
+  },
+  {
+    "id":714,
+    "name":"Rond point de Paris 1",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt714.jpg",
+    "latitude":47.23397,
+    "longitude":-1.53561
+  },
+  {
+    "id":715,
+    "name":"Duchesse Anne",
+    "obsolete": "true",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt715.jpg",
+    "latitude":47.21643,
+    "longitude":-1.54693
+  },
+  {
+    "id":716,
+    "name":"Marguyonnes",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt716.jpg",
+    "latitude":47.19265,
+    "longitude":-1.5629
+  },
+  {
+    "id":717,
+    "name":"Route de Vannes",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt717.jpg",
+    "latitude":47.24624,
+    "longitude":-1.60423
+  },
+  {
+    "id":718,
+    "name":"Vincent Gache",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt718.jpg",
+    "latitude":47.20686,
+    "longitude":-1.53945
+  },
+  {
+    "id":720,
+    "name":"Route de Pornic",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt720.jpg",
+    "latitude":47.18769,
+    "longitude":-1.5870
+  },
+  {
+    "id":721,
+    "name":"Pont Willy Brandt",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt721.jpg",
+    "latitude":47.20966,
+    "longitude":-1.5368
+  },
+  {
+    "id":722,
+    "name":"Pirmil 2",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt722.jpg",
+    "latitude":47.19770,
+    "longitude":-1.5428
+  },
+  {
+    "id":723,
+    "name":"Rond point du Cardo",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt723.jpg",
+    "latitude":47.26234,
+    "longitude":-1.5835
+  },
+  {
+    "id":724,
+    "name":"Gustave Roch",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt724.jpg",
+    "latitude":47.20384,
+    "longitude":-1.55163
+  },
+  {
+    "id":725,
+    "name":"Greneraie",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt725.jpg",
+    "latitude":47.19805,
+    "longitude":-1.529938
+  },
+  {
+    "id":726,
+    "name":"Porte de la Beaujoire",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt726.jpg",
+    "latitude":47.25508,
+    "longitude":-1.52989
+  },
+  {
+    "id":727,
+    "name":"Rond point de Paris 2",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt727.jpg",
+    "latitude":47.23393,
+    "longitude":-1.53616
+  },
+  {
+    "id":728,
+    "name":"Duchesse Anne",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt728.jpg",
+    "latitude":47.21627,
+    "longitude":-1.54598
+  },
+  {
+    "id":729,
+    "name":"Victor Hugo/Gustave Roch",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt729.jpg",
+    "latitude":47.20371,
+    "longitude":-1.55178
+  },
+  {
+    "id":730,
+    "name":"Bourdonnières Nord",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt730.jpg",
+    "latitude":47.18432,
+    "longitude":-1.52020
+  },
+  {
+    "id":731,
+    "name":"Pont des 3 continents",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt731.jpg",
+    "latitude":47.19803,
+    "longitude":-1.5619
+  },
+  {
+    "id":732,
+    "name":"Victor Schoelcher",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt732.jpg",
+    "latitude":47.20992,
+    "longitude":-1.56143
+  },
+  {
+    "id":734,
+    "name":"Jacksonville",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt734.jpg",
+    "latitude":47.20725,
+    "longitude":-1.57224
+  },
+  {
+    "id":735,
+    "name":"Petit Port",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt735/snap_c1.jpg",
+    "latitude":47.24349,
+    "longitude":-1.5566
+  },
+  {
+    "id":736,
+    "name":"Prairie de Mauves",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt736.jpg",
+    "latitude":47.22037,
+    "longitude":-1.516726
+  },
+  {
+    "id":737,
+    "name":"Croix des Herses",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt737/snap_c1.jpg",
+    "latitude":47.19296,
+    "longitude":-1.52775
+  },
+  {
+    "id":738,
+    "name":"Rezé Saint Paul",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt738/snap_c1.jpg",
+    "latitude":47.18479,
+    "longitude":-1.54617
+  },
+  {
+    "id":739,
+    "name":"Raymond Poincaré",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt739/snap_c1.jpg",
+    "latitude":47.22235,
+    "longitude":-1.58540
+  },
+  {
+    "id":740,
+    "name":"Rue de Strasbourg",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt740.jpg",
+    "latitude":47.21500,
+    "longitude":-1.55040
+  },
+  {
+    "id":741,
+    "name":"Baco Madeleine",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt741.jpg",
+    "latitude":47.21258,
+    "longitude":-1.55244
+  },
+  {
+    "id":742,
+    "name":"Place du Cirque",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt742.jpg",
+    "latitude":47.21638,
+    "longitude":-1.55656
+  },
+  {
+    "id":744,
+    "name":"Sophie Trebuchet",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt744.jpg",
+    "latitude":47.22052,
+    "longitude":-1.54547
+  },
+  {
+    "id":745,
+    "name":"Buat Desaix",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt745.jpg",
+    "latitude":47.22716,
+    "longitude":-1.54257
+  },
+  {
+    "id":746,
+    "name":"Croix Bonneau",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt746.jpg",
+    "latitude":47.20955,
+    "longitude":-1.59636
+  },
+  {
+    "id":748,
+    "name":"Place Auriol",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt748.jpg",
+    "latitude":47.22178,
+    "longitude":-1.59223
+  },
+  {
+    "id":749,
+    "name":"Bout des pavés",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt749.jpg",
+    "latitude":47.25403,
+    "longitude":-1.57643
+  },
+  {
+    "id":750,
+    "name":"Boulevard Einstein",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt750.jpg",
+    "latitude":47.26017,
+    "longitude":-1.55993
+  },
+  {
+    "id":751,
+    "name":"Boulevard des Poilus",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt751.jpg",
+    "latitude":47.22847,
+    "longitude":-1.52631
+  },
+  {
+    "id":752,
+    "name":"Ranzay",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt752.jpg",
+    "latitude":47.25257,
+    "longitude":-1.52999
+  },
+  {
+    "id":753,
+    "name":"Trois Moulins",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt753.jpg",
+    "latitude":47.17826,
+    "longitude":-1.54432
+  },
+  {
+    "id":754,
+    "name":"Indochine Sud",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt754.jpg",
+    "latitude":47.24241,
+    "longitude":-1.53439
+  },
+  {
+    "id":755,
+    "name":"Indochine Nord",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt755.jpg",
+    "latitude":47.24287,
+    "longitude":-1.53415
+  },
+  {
+    "id":756,
+    "name":"Haluchère",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt756.jpg",
+    "latitude":47.24847,
+    "longitude":-1.52139
+  },
+  {
+    "id":757,
+    "name":"Saint Joseph Beaujoire",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt757.jpg",
+    "latitude":47.25896,
+    "longitude":-1.52772
+  },
+  {
+    "id":758,
+    "name":"Pont Senghor Blancho",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt758.jpg",
+    "latitude":47.20682,
+    "longitude":-1.526823
+  },
+  {
+    "id":759,
+    "name":"Porte de la Chapelle",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt759/snap_c1.jpg",
+    "latitude":47.259562,
+    "longitude":-1.557301
+  },
+  {
+    "id":766,
+    "name":"Perray",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt766.jpg",
+    "latitude":47.241311,
+    "longitude":-1.508726
+  },
+  {
+    "id":767,
+    "name":"Sainte Luce int.",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt767.jpg",
+    "latitude":47.24510,
+    "longitude":-1.5035
+  },
+  {
+    "id":768,
+    "name":"Sainte Luce ext.",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt768.jpg",
+    "latitude":47.24675,
+    "longitude":-1.50009
+  },
+  {
+    "id":769,
+    "name":"Tbilissi",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt769.jpg",
+    "latitude":47.212678,
+    "longitude":-1.541712
+  },
+  {
+    "id":770,
+    "name":"Picasso Berlin",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt770.jpg",
+    "latitude":47.216349,
+    "longitude":-1.533985
+  },
+  {
+    "id":771,
+    "name":"Senghor Enchantes",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt771.jpg",
+    "latitude":47.204846,
+    "longitude":-1.523637
+  },
+  {
+    "id":772,
+    "name":"Moutonnerie",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt772.jpg",
+    "latitude":47.219716,
+    "longitude":-1.533172
+  },
+  {
+    "id":773,
+    "name":"Kennedy Mercoeur",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt773.jpg",
+    "latitude":47.2143887,
+    "longitude":-1.549971
+  },
+  {
+    "id":774,
+    "name":"Millerand",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt774.jpg",
+    "latitude":47.208023,
+    "longitude":-1.53029
+  },
+  {
+    "id":775,
+    "name":"Freinet",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt775.jpg",
+    "latitude":47.20673,
+    "longitude":-1.53374
+  },
+  {
+    "id":776,
+    "name":"République",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt776.jpg",
+    "latitude":47.205406,
+    "longitude":-1.554667
+  },
+  {
+    "id":777,
+    "name":"Quai des Antilles",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt777/snap_c1.jpg",
+    "latitude":47.19982,
+    "longitude":-1.5732
+  },
+  {
+    "id":778,
+    "name":"Pont Haudaudine",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt778.jpg",
+    "latitude":47.208286,
+    "longitude":-1.555354
+  },
+  {
+    "id":779,
+    "name":"Mangin",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt779.jpg",
+    "latitude":47.20051,
+    "longitude":-1.5444
+  },
+  {
+    "id":780,
+    "name":"Saint Similien",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt780.jpg",
+    "latitude":47.220095,
+    "longitude":-1.558806
+  },
+  {
+    "id":781,
+    "name":"Porte de Carquefou",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt781.jpg",
+    "latitude":47.25309,
+    "longitude":-1.5155
+  },
+  {
+    "id":782,
+    "name":"Pont Tabarly Sarrebruck",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt782.jpg",
+    "latitude":47.21367,
+    "longitude":-1.5295
+  },
+  {
+    "id":786,
+    "name":"Pont Tabarly Bollardière",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt786.jpg",
+    "latitude":47.21134,
+    "longitude":-1.52822
+  },
+  {
+    "id":787,
+    "name":"Schuman Close",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt787.jpg",
+    "latitude":47.2415,
+    "longitude":-1.5733
+  },
+  {
+    "id":788,
+    "name":"Pont Motte Rouge",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt788.jpg",
+    "latitude":47.22876,
+    "longitude":-1.55297
+  },
+  {
+    "id":789,
+    "name":"Place René Bouhier",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt789.jpg",
+    "latitude":47.20967,
+    "longitude":-1.57047
+  },
+  {
+    "id":790,
+    "name":"Edit de Nantes",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt790.jpg",
+    "latitude":47.214571,
+    "longitude":-1.56747
+  },
+  {
+    "id":791,
+    "name":"Guist'hau Geslin",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt791.jpg",
+    "latitude":47.21605,
+    "longitude":-1.56580
+  },
+  {
+    "id":792,
+    "name":"Place Eugène Livet",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt792.jpg",
+    "latitude":47.21142,
+    "longitude":-1.56728
+  },
+  {
+    "id":794,
+    "name":"Souillarderie",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt794.jpg",
+    "latitude":47.23727,
+    "longitude":-1.51684
+  },
+  {
+    "id":795,
+    "name":"Européeens",
+    "url":"http://infotrafic.nantesmetropole.fr/data/webcams/rt795.jpg",
+    "latitude":47.28059,
+    "longitude":-1.51413
+  }
+]}

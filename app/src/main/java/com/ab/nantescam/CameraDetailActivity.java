@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 
+import java.util.List;
+
 /**
  * An activity representing a single Camera detail screen. This activity is only
  * used on handset devices. On tablet-size devices, item details are presented
@@ -38,8 +40,8 @@ public class CameraDetailActivity extends FragmentActivity {
 			// Create the detail fragment and add it to the activity
 			// using a fragment transaction.
 			Bundle arguments = new Bundle();
-			arguments.putString(CameraDetailFragment.ARG_ITEM_ID, getIntent()
-					.getStringExtra(CameraDetailFragment.ARG_ITEM_ID));
+			arguments.putParcelable(CameraDetailFragment.ARG_ITEM_ID, getIntent()
+					.getParcelableExtra(CameraDetailFragment.ARG_ITEM_ID));
 			CameraDetailFragment fragment = new CameraDetailFragment();
 			fragment.setArguments(arguments);
 			getSupportFragmentManager().beginTransaction()
@@ -97,7 +99,7 @@ public class CameraDetailActivity extends FragmentActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	/*@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		//getMenuInflater().inflate(R.menu.image_main, menu);

@@ -74,7 +74,7 @@ public class CameraListFragment extends ListFragment {
 		boolean startWithFavs = Util.getPrefs(getActivity()).getBoolean(Cams.KEY_PREF_STARTFAVS,
 				false);
 		List<WebCam> values = Cams.getNames(startWithFavs ? Util.getFavoritesPrefs(getActivity())
-				: null);
+				: null, ((CameraMapActivity) getActivity()).getCams());
 		adapter = new CamAdapter(getActivity(), values);
 		setListAdapter(adapter);
 

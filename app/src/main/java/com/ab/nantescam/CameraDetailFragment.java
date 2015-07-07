@@ -20,11 +20,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-/**
- * A fragment representing a single Camera detail screen. This fragment is
- * either contained in a {@link CameraListActivity} in two-pane mode (on
- * tablets) or a {@link CameraDetailActivity} on handsets.
- */
+
 public class CameraDetailFragment extends Fragment implements OnDismissListener {
 	/**
 	 * The fragment argument representing the item ID that this fragment
@@ -62,10 +58,7 @@ public class CameraDetailFragment extends Fragment implements OnDismissListener 
 			// Load the dummy content specified by the fragment
 			// arguments. In a real-world scenario, use a Loader
 			// to load content from a content provider.
-			String s = getArguments().getString(ARG_ITEM_ID);
-			if (s != null) {
-				webCam = Cams.getWebCam(Integer.parseInt(s));
-			}
+			webCam = getArguments().getParcelable(ARG_ITEM_ID);
 		} else
 			webCam = null;
 	}

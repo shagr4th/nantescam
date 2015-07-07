@@ -1,6 +1,9 @@
 package com.ab.nantescam;
 
-public class WebCam implements Comparable<WebCam> {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class WebCam implements Comparable<WebCam>, Parcelable {
 	private int code;
 	private String name;
 	private String URL;
@@ -17,6 +20,14 @@ public class WebCam implements Comparable<WebCam> {
 		this (code, name, URL);
 		this.latitude = latitude;
 		this.longitude = longitude;
+	}
+
+	public WebCam(Parcel parcel) {
+		code = parcel.readInt();
+		name = parcel.readString();
+		URL = parcel.readString();
+		latitude = parcel.readDouble();
+		longitude = parcel.readDouble();
 	}
 
 	public int getCode() {
@@ -56,4 +67,27 @@ public class WebCam implements Comparable<WebCam> {
 		return longitude;
 	}
 
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeInt(code);
+		dest.writeString(name);
+		dest.writeString(URL);
+		dest.writeDouble(latitude);
+		dest.writeDouble(longitude);
+	}
+
+	public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+		public WebCam createFromParcel(Parcel in) {
+			return new WebCam(in);
+		}
+
+		public WebCam[] newArray(int size) {
+			return new WebCam[size];
+		}
+	};
 }
