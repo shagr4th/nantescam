@@ -59,6 +59,7 @@ public class CamLoader extends AsyncTaskLoader<List<WebCam>> {
                         pw.println(line);
                     }
                     pw.close();
+                    in.close();
                 }
                 inputStream = new FileInputStream(jsonFile);
             } else {
