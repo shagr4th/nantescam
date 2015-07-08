@@ -4,17 +4,20 @@ import android.content.Context;
 import android.net.ParseException;
 import android.support.v4.content.AsyncTaskLoader;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,25 +26,56 @@ import java.util.List;
  */
 public class CamLoader extends AsyncTaskLoader<List<WebCam>> {
 
+    Context context = null;
+
     public CamLoader(Context context) {
         super(context);
+        this.context = context;
         forceLoad();
     }
 
     @Override
     public List<WebCam> loadInBackground() {
         List<WebCam> cams = new ArrayList<WebCam>();
-        String url = "https://shagr4th.github.io/nantes_webcams.json";
-        HttpClient httpClient = new DefaultHttpClient();
-        HttpGet get = new HttpGet(url);
-        HttpResponse res = null;
+        File jsonFile = new File(context.getCacheDir(), "nantes_webcams.json");
         try {
-            res = httpClient.execute(get);
-            HttpEntity entity = res.getEntity();
-            String body = EntityUtils.toString(entity);
-            JSONObject json = new JSONObject(body);
+            URL url = new URL("https://shagr4th.github.io/nantes_webcams.json");
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            int responseCode = urlConnection.getResponseCode();
+
+            InputStream inputStream = null;
+            if (responseCode == 200) {
+                long currentTime = System.currentTimeMillis();
+                long lastModified = urlConnection.getHeaderFieldDate("Last-Modified", currentTime);
+
+                if (jsonFile.exists() && lastModified < jsonFile.lastModified()) {
+                    // skip update
+                } else {
+                    InputStream in = urlConnection.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+                    PrintWriter pw = new PrintWriter(jsonFile, "UTF-8");
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        pw.println(line);
+                    }
+                    pw.close();
+                }
+                inputStream = new FileInputStream(jsonFile);
+            } else {
+                inputStream = context.getAssets().open("nantes_webcams.json");
+            }
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
+            }
+            reader.close();
+
+            JSONObject json = new JSONObject(sb.toString());
             JSONArray array = json.getJSONArray("webcams");
-            for(int i=0;i<array.length();i++) {
+            for (int i = 0; i < array.length(); i++) {
                 JSONObject camJson = array.getJSONObject(i);
                 WebCam cam = new WebCam(camJson.getInt("id"),
                         camJson.getString("name"),
@@ -50,16 +84,13 @@ public class CamLoader extends AsyncTaskLoader<List<WebCam>> {
                         camJson.getDouble("longitude"));
                 cams.add(cam);
             }
+
         } catch (ParseException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
-        } finally {
-            if (cams.size() == 0) {
-                // todo: load json from assets
-            }
         }
         return cams;
     }
