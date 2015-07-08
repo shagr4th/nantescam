@@ -48,7 +48,7 @@ public class CamLoader extends AsyncTaskLoader<List<WebCam>> {
                 long currentTime = System.currentTimeMillis();
                 long lastModified = urlConnection.getHeaderFieldDate("Last-Modified", currentTime);
 
-                if (jsonFile.exists() && lastModified < jsonFile.lastModified()) {
+                if (jsonFile.exists() && lastModified < jsonFile.lastModified() && jsonFile.length() > 0) {
                     // skip update
                 } else {
                     InputStream in = urlConnection.getInputStream();
