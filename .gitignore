@@ -31,6 +31,8 @@ Thumbs.db
 #.idea/workspace.xml - remove # and delete .idea if it better suit your needs.
 .gradle
 build/
+app/app.iml
+*.iml
 
 # api keys
 app/src/main/res/values/apikeys.xml
