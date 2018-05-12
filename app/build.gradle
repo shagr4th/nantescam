@@ -19,6 +19,6 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:24.0.0'
-    compile 'com.google.android.gms:play-services:5.0.89'
+    implementation 'com.android.support:support-v4:24.0.0'
+    implementation 'com.google.android.gms:play-services:5.0.89'
 }
