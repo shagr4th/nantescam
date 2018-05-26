@@ -4,34 +4,38 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMap.OnCameraChangeListener;
-import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
-import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
+import org.osmdroid.api.IMapController;
+import org.osmdroid.events.MapEventsReceiver;
+import org.osmdroid.events.MapListener;
+import org.osmdroid.events.ScrollEvent;
+import org.osmdroid.events.ZoomEvent;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.MapEventsOverlay;
+import org.osmdroid.views.overlay.Marker;
+import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
 public class CameraMapActivity extends FragmentActivity implements
-		CameraListFragment.Callbacks, OnMarkerClickListener,
-		OnMapLongClickListener, OnCameraChangeListener,
+		CameraListFragment.Callbacks, Marker.OnMarkerClickListener, MapListener,
 		LoaderManager.LoaderCallbacks<List<WebCam>> {
 
 	@Override
@@ -44,12 +48,10 @@ public class CameraMapActivity extends FragmentActivity implements
 		this.result = result;
 
 		map = ((MapFragment) getFragmentManager().findFragmentById(
-				R.id.camera_map)).getMap();
+				R.id.camera_map)).getmMapView();
 		if (map != null) {
-			map.setTrafficEnabled(true);
-			map.setOnMapLongClickListener(this);
-			map.setOnMarkerClickListener(this);
-			map.setOnCameraChangeListener(this);
+
+			map.addMapListener(this);
 
 			boolean startWithFavs = getPrefs().getBoolean(
 					Cams.KEY_PREF_STARTFAVS, false);
@@ -61,8 +63,10 @@ public class CameraMapActivity extends FragmentActivity implements
 			float lat = getPrefs().getFloat(Cams.KEY_MAP_LAT, 47.21462f);
 			float lng = getPrefs().getFloat(Cams.KEY_MAP_LONG, -1.55710f);
 
-			map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat,
-					lng), zoom));
+            IMapController mapController = map.getController();
+            mapController.setZoom(zoom);
+            GeoPoint startPoint = new GeoPoint(lat, lng);
+            mapController.setCenter(startPoint);
 		}
 	}
 	@Override
@@ -70,7 +74,7 @@ public class CameraMapActivity extends FragmentActivity implements
 	}
 
 	private List<WebCam> result;
-	private GoogleMap map;
+	private MapView map;
 	private HashMap<Marker, WebCam> markers = new HashMap<Marker, WebCam>();
 
 	/**
@@ -82,6 +86,18 @@ public class CameraMapActivity extends FragmentActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		if (Build.VERSION.SDK_INT >= 23) {
+			if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+				// ok
+			} else {
+				// ko
+				ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+			}
+		}
+
+		//Configuration.getInstance().setOsmdroidBasePath(new File(Environment.getExternalStorageDirectory(), "osmdroid"));
+		//Configuration.getInstance().setOsmdroidTileCache(new File(Environment.getExternalStorageDirectory(), "osmdroid/tiles"));
 		setContentView(R.layout.activity_camera_map);
 
 		if (findViewById(R.id.camera_detail_container) != null) {
@@ -99,19 +115,26 @@ public class CameraMapActivity extends FragmentActivity implements
 
 	private void addMarkers(List<WebCam> values) {
 		for (Marker marker : markers.keySet()) {
-			marker.remove();
+            map.getOverlays().remove(marker);
 		}
 		markers.clear();
 		for (WebCam cam : values) {
 			if (cam.getLatitude() > 0.0) {
-				Marker m = map.addMarker(new MarkerOptions().position(
-						new LatLng(cam.getLatitude(), cam.getLongitude()))
-						.title(cam.getName())
-				// .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher))
-						);
+                Marker m = new Marker(map) {
+                    public boolean onLongPress(final MotionEvent event, final MapView mapView) {
+                        onMapLongClick(this);
+                        return true;
+                    }
+                };
+                m.setDraggable(false);
+                m.setPosition(new GeoPoint(cam.getLatitude(), cam.getLongitude()));
+                m.setTitle(cam.getName());
+				m.setOnMarkerClickListener(this);
+                map.getOverlays().add(m);
 				markers.put(m, cam);
 			}
 		}
+        map.invalidate();
 	}
 
 	SharedPreferences getPrefs() {
@@ -210,8 +233,8 @@ public class CameraMapActivity extends FragmentActivity implements
 		}
 	}
 
-	@Override
-	public boolean onMarkerClick(Marker marker) {
+    @Override
+    public boolean onMarkerClick(Marker marker, MapView mapView) {
 		WebCam cam = markers.get(marker);
 		if (cam != null) {
 			onItemSelected("" + cam.getCode());
@@ -220,25 +243,11 @@ public class CameraMapActivity extends FragmentActivity implements
 		return false;
 	}
 
-	@Override
-	public void onMapLongClick(LatLng point) {
+	public void onMapLongClick(Marker marker) {
 		boolean favs = getPrefs().getBoolean(
 				Cams.KEY_PREF_STARTFAVS, false);
-		WebCam nearest = null;
-		Marker nearestMarker = null;
-		double nearestL = Double.MAX_VALUE;
-		for (Marker marker : markers.keySet()) {
-			WebCam cam = markers.get(marker);
-			double latdiff = Math.abs(cam.getLatitude() - point.latitude);
-			double longdiff = Math.abs(cam.getLongitude() - point.longitude);
-			double sum = latdiff * latdiff + longdiff * longdiff;
-			if (sum < nearestL) {
-				nearestL = sum;
-				nearestMarker = marker;
-				nearest = cam;
-			}
-		}
-		if (nearest != null) {
+        WebCam nearest = markers.get(marker);
+        if (nearest != null) {
 			String itemRow = nearest.getCode() + "|";
 
 			String fav = getPrefs().getString(Cams.KEY_PREF_FAVS, "");
@@ -250,8 +259,9 @@ public class CameraMapActivity extends FragmentActivity implements
 						getString(R.string.deleted_favorite)
 								+ nearest.getName(), Toast.LENGTH_SHORT).show();
 				if (favs) {
-					nearestMarker.remove();
+                    map.getOverlays().remove(marker);
 				}
+                map.invalidate();
 			} else if (!favs) {
 				fav = fav + itemRow;
 				Toast.makeText(this,
@@ -265,16 +275,44 @@ public class CameraMapActivity extends FragmentActivity implements
 
 	}
 
-	@Override
-	public void onCameraChange(CameraPosition position) {
-		Editor edt = getPrefs().edit();
-		edt.putFloat(Cams.KEY_MAP_ZOOM, position.zoom);
-		edt.putFloat(Cams.KEY_MAP_LAT, (float) position.target.latitude);
-		edt.putFloat(Cams.KEY_MAP_LONG, (float) position.target.longitude);
-		edt.commit();
-	}
-
 	public List<WebCam> getCams() {
 		return result;
 	}
+
+    public void onResume(){
+        super.onResume();
+        //this will refresh the osmdroid configuration on resuming.
+        //if you make changes to the configuration, use
+        //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        //Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
+		if (map != null)
+			map.onResume(); //needed for compass, my location overlays, v6.0.0 and up
+    }
+
+    public void onPause(){
+        super.onPause();
+        //this will refresh the osmdroid configuration on resuming.
+        //if you make changes to the configuration, use
+        //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        //Configuration.getInstance().save(this, prefs);
+		if (map != null)
+        	map.onPause();  //needed for compass, my location overlays, v6.0.0 and up
+    }
+
+    @Override
+    public boolean onScroll(ScrollEvent event) {
+        Editor edt = getPrefs().edit();
+        edt.putFloat(Cams.KEY_MAP_LAT, (float) event.getSource().getMapCenter().getLatitude());
+        edt.putFloat(Cams.KEY_MAP_LONG, (float) event.getSource().getMapCenter().getLongitude());
+        edt.commit();
+        return false;
+    }
+
+    @Override
+    public boolean onZoom(ZoomEvent event) {
+        Editor edt = getPrefs().edit();
+        edt.putFloat(Cams.KEY_MAP_ZOOM, (float) event.getZoomLevel());
+        edt.commit();
+        return false;
+    }
 }
