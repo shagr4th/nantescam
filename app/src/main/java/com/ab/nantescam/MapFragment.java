@@ -41,7 +41,7 @@ public class MapFragment extends Fragment {
         if (mMapView!=null) {
             mMapView.setBuiltInZoomControls(true);
             mMapView.setMultiTouchControls(true);
-            mMapView.setTilesScaledToDpi(true);
+            //mMapView.setTilesScaledToDpi(true);
         }
     }
 
